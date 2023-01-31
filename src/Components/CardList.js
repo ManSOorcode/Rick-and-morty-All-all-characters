@@ -3,7 +3,7 @@ import React from "react";
 import Male from "../images/icons8-person-raising-hand-96.png";
 import Female from "../images/icons8-woman-raising-hand-96.png";
 
-const CardList = ({ name, gender, image }) => {
+const CardList = ({ name, gender, image, onClick }) => {
   //   console.log(name, gender, image);
   //   let src;
   const icons = gender === "Male" ? Male : Female;
@@ -23,7 +23,10 @@ const CardList = ({ name, gender, image }) => {
 
             {/* <img src={Male} className="text-lg bg-black rounded-full" /> */}
           </div>
-          <button className="px-2 py-1 rounded-md bg-slate-800">
+          <button
+            onClick={onClick}
+            className="px-2 py-1 rounded-md bg-slate-800"
+          >
             i More info
           </button>
         </div>
