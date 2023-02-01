@@ -54,7 +54,9 @@ const Cards = ({ changeCard, seachingCards }) => {
   };
 
   const items = state
-    .filter((item) => item.name.toLowerCase().includes(seachingCards))
+    .filter((item) =>
+      item.name.toLowerCase().includes(seachingCards.toLowerCase().trim())
+    )
     .map((item) => (
       <CardList
         key={item.id}
