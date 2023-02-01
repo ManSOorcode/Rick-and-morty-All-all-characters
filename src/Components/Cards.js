@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Modal from "../UI/Modal";
 
 import CardList from "./CardList";
+import image from "../images/image-removebg-preview.png";
 
 import pageError from "../images/pagenotFound.png";
 
@@ -20,7 +21,7 @@ const Cards = ({ changeCard, seachingCards }) => {
       );
 
       if (!response.ok) {
-        throw new Error("Something is went wrong");
+        throw new Error("Something is went wrong with");
       }
 
       const data = await response.json();
@@ -61,7 +62,16 @@ const Cards = ({ changeCard, seachingCards }) => {
   };
 
   if (state.length === 0) {
-    return <p className="text-center text-8xl m-60">{errorstate} 💥 💥</p>;
+    return (
+      <div className="grid items-center justify-center w-full h-full my-6 text-xl text-center md:text-5xl xl:text-6xl ">
+        {errorstate}
+        <img
+          src={image}
+          className="m-auto w-72 h-52 md:w-96 md:h-60"
+          alt="RickAndMonty"
+        />
+      </div>
+    );
   }
 
   let items = state

@@ -8,6 +8,7 @@ const Layout = (props) => {
 
   const [searchValue, setSearchValue] = useState("");
 
+  let buttonCondition = true;
   const prevHandler = () => {
     if (prevState > 1) {
       const currentState = prevState - 1;
@@ -28,12 +29,22 @@ const Layout = (props) => {
   const inputdatahandler = (e) => {
     setSearchValue(e.target.value);
   };
+
+  if (prevState === 1) {
+    buttonCondition = false;
+  }
   return (
     <div className="relative h-screen font-amaranth">
       <header
         className={`flex items-center justify-between h-16 text-gray-400 bg-slate-900 fixed top-0 left-0 right-0 z-10`}
       >
-        <img src={image} className="w-28 h-30" alt="RickAndMonty" />
+        <a
+          href="https://github.com/ManSOorcode"
+          rel="noreferrer"
+          target={"_blank"}
+        >
+          <img src={image} className="w-28 h-30" alt="RickAndMonty" />
+        </a>
         <button className="px-2 py-1 mr-10 text-2xl bg-white rounded-xl ">
           💡
         </button>
@@ -52,8 +63,9 @@ const Layout = (props) => {
         <Cards changeCard={prevState} seachingCards={searchValue} />
         <div className="flex justify-center text-center col-span-full ">
           <button
-            className="px-6 py-2 m-4 bg-gray-900 rounded-lg text-slate-300"
+            className="px-6 py-2 m-4 bg-gray-900 rounded-lg text-slate-300 disabled:tex"
             onClick={prevHandler}
+            disabled={!buttonCondition}
           >
             Prev
           </button>
