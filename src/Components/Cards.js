@@ -61,7 +61,7 @@ const Cards = ({ changeCard, seachingCards }) => {
   };
 
   if (state.length === 0) {
-    return <p className="text-center text-8xl m-60">{...errorstate} 💥 💥</p>;
+    return <p className="text-center text-8xl m-60">{errorstate} 💥 💥</p>;
   }
 
   let items = state
