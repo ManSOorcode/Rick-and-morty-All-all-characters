@@ -4,12 +4,9 @@ import Male from "../images/icons8-person-raising-hand-96.png";
 import Female from "../images/icons8-woman-raising-hand-96.png";
 
 const CardList = ({ name, gender, image, onClick }) => {
-  //   console.log(name, gender, image);
-  //   let src;
   const icons = gender === "Male" ? Male : Female;
 
   return (
-    // <p>hello</p>
     <div className="relative flex flex-col items-center justify-center m-5 ">
       <div>
         <img src={image} className="rounded-lg" alt={`${name}`} />
@@ -20,8 +17,6 @@ const CardList = ({ name, gender, image, onClick }) => {
           <div className="flex items-center ">
             <img src={icons} className="w-5 mr-1" alt="male icon" />
             {gender}
-
-            {/* <img src={Male} className="text-lg bg-black rounded-full" /> */}
           </div>
           <button
             onClick={onClick}
