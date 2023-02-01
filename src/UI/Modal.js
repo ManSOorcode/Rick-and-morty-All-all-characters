@@ -9,7 +9,7 @@ const Modal = ({ onClick, modalValue }) => {
     <Overlay onClick={onClick}>
       <div className="z-20 w-full h-full md:top-0 md:right-0 md:w-72 bg-slate-900">
         <div className="w-full">
-          <img className="w-96 round-lg" src={img} alt={name} />
+          <img className="w-96 " src={img} alt={name} />
           <button
             onClick={onClick}
             className="absolute w-8 text-2xl text-gray-700 transition duration-200 bg-gray-900 rounded-lg top-4 left-4 active:bg-white active:text-gray-700"

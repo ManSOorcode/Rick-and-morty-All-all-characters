@@ -10,6 +10,8 @@ const Cards = ({ changeCard, seachingCards }) => {
   const [modalState, setModalState] = useState(false);
   const [modalValue, setModalValue] = useState([]);
 
+  const [errorstate, setErrorstate] = useState([]);
+
   useEffect(() => {
     async function rickandmontyLocation() {
       //   const response = await fetch("https://rickandmortyapi.com/api/character");
@@ -17,7 +19,12 @@ const Cards = ({ changeCard, seachingCards }) => {
         `https://rickandmortyapi.com/api/character?page=${changeCard}`
       );
 
+      if (!response.ok) {
+        throw new Error("Something is went wrong");
+      }
+
       const data = await response.json();
+
       const { results, ...rest } = data;
 
       const dummyData = [];
@@ -38,7 +45,7 @@ const Cards = ({ changeCard, seachingCards }) => {
       setstate(dummyData);
     }
 
-    rickandmontyLocation();
+    rickandmontyLocation().catch((err) => setErrorstate(err.message));
   }, [changeCard]);
 
   const ShowmodalHandler = (id) => {
@@ -53,7 +60,11 @@ const Cards = ({ changeCard, seachingCards }) => {
     setModalState(false);
   };
 
-  const items = state
+  if (state.length === 0) {
+    return <p className="text-center text-8xl m-60">{...errorstate} 💥 💥</p>;
+  }
+
+  let items = state
     .filter((item) =>
       item.name.toLowerCase().includes(seachingCards.toLowerCase().trim())
     )
@@ -67,8 +78,9 @@ const Cards = ({ changeCard, seachingCards }) => {
         onClick={ShowmodalHandler.bind(null, item.id)}
       />
     ));
+  // }
 
-  if (items.length == 0) {
+  if (items.length === 0) {
     return (
       <div className="flex justify-center">
         <img src={pageError} alt="Not Found" />
